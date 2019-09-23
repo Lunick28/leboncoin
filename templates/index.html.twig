@@ -2,6 +2,14 @@
 
 {% block body %}
 
-    <h1>{{ title }}</h1>
+    <div class="menu">
+
+        <h1>{{ title }}</h1>
+
+        <a href="{{ path('connexion') }}"><button type="button" class="btn btn-outline-primary">Connexion</button></a>
+
+        <a href="{{ path('inscription') }}"><button type="button" class="btn btn-outline-primary">Inscription</button></a>
+
+    </div>
 
 {% endblock %}

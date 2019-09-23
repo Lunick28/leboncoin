@@ -1,4 +1,22 @@
+html, body, div {
+    margin:0;
+    padding:0;
+
+}
+
 body  {
-    background: #d5fdff
-    
+    background: #d5fdff;
+    /*border-width:2px;*/
+    /*border-color:red;*/
+    /*border-style:solid;*/
+}
+
+.menu {
+    text-align: center;
+    margin-top: 15%;
+    margin-left: 40%;
+    margin-right: 40%;
+    /*border-width:2px;*/
+    /*border-color:red;*/
+    /*border-style:solid;*/
 }
