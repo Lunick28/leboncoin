@@ -19,7 +19,6 @@ function getAllUsers()
 
 function createUsers($email, $password)
 {
-
     $bdd = new PDO('mysql:host=localhost;dbname=leboncoin;charset=utf8', 'root', '');
     $req = $bdd->prepare('INSERT INTO users VALUES(:email, :password)');
     $req->execute(array(
@@ -27,13 +26,3 @@ function createUsers($email, $password)
         'password' => $password
     ));
 }
-
-//function inscription()
-//{
-//
-//    $email = $_POST['email'];
-//    $password = $_POST['password'];
-//    createUsers($email, $password);
-//
-//}
-

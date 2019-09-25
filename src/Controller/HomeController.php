@@ -53,11 +53,4 @@ class HomeController extends AbstractController
             'users' => $users
         ]);
     }
-
-    /**
-     * @Route("/inscription_en_cours", name="inscription_en_cours")
-     **/
-    public function inscription_en_cours() {
-        return $this->index();
-    }
 }
