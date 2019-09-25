@@ -17,7 +17,7 @@ class UserController extends AbstractController
     /**
      * @Route("/inscription_en_cours", name="inscription_en_cours")
      **/
-    public function new(EntityManagerInterface $em, Request $request)
+    public function inscription(EntityManagerInterface $em, Request $request)
     {
         $user = new Users();
         $user->setEmail($request->get('email'))
@@ -42,6 +42,24 @@ class UserController extends AbstractController
         $users = $repository->findAll();
 
         return new JsonResponse($users);
+    }
+
+    /**
+     * @Route("/connexion_en_cours", name="connexion_en_cours")
+     **/
+    public function connexion(EntityManagerInterface $em, Request $request)
+    {
+        $user = new Users();
+        $user->setEmail($request->get('email'))
+            ->setPassword($request->get('password'))
+            ->setPseudo($request->get('pseudo'));
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->render('index.html.twig', [
+            'title' => 'Bienvenue ' . $user->getPseudo() . ', connectez-vous !'
+        ]);
     }
 
 }
