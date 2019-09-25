@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="menu">
+
+        <h1>{{ title }}</h1>
+
+        <p>{{ erreur }}</p>
+        {% for users in users %}
+            <p>{{ users['email'] }} {{  users['password'] }}</p>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

@@ -6,18 +6,19 @@
 
         <h1>{{ title }}</h1>
 
-        <form>
+        <form action="C:\Users\bigre\Desktop\Symfony\leboncoin\public\inscription.php" method="post ">
             <div class="form-group">
                 <label for="exampleInputEmail1">Adresse email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse email">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse email" name="email">
                 <small id="emailHelp" class="form-text text-muted">On ne divulguera jamais votre email. tkt.</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Mot de Passe</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" name="password">
             </div>
+            <a href="{{ path('inscription_en_cours') }}" name="envoi"><button type="button" class="btn btn-outline-primary">Confirmer</button></a>
         </form>
-        <a href="{{ path('home') }}"><button type="button" class="btn btn-outline-primary">Confirmer</button></a>
+
 
     </div>
 
