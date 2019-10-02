@@ -19,6 +19,19 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+
+    /**
+     * @method UserRespository|null find($id, $lockMode = null, $lockVersion = null)
+     * @method UserRespository|null findOneBy(array $criteria, array $orderBy = null)
+     * @method UserRespository[]    findAll()
+     * @method UserRespository[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+     */
+    public function findAllUser() {
+        return $this->createQueryBuilder('u')
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -7,8 +7,8 @@
         <h1>{{ title }}</h1>
 
         <p>{{ erreur }}</p>
-        {% for users in users %}
-            <p>{{ users['email'] }} {{  users['password'] }}</p>
+        {% for user in users %}
+            <p>{{ user.getUsername() }} {{  user.getPassword() }}</p>
         {% endfor %}
 
     </div>

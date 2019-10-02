@@ -20,7 +20,7 @@ class UserController extends AbstractController
     public function inscription(EntityManagerInterface $em, Request $request)
     {
         $user = new User();
-        $user->setUsername($request->get('username')) 
+        $user->setUsername($request->get('username'))
             ->setPassword($request->get('password'));
 
         $em->persist($user);
@@ -36,11 +36,20 @@ class UserController extends AbstractController
      **/
     public function list(EntityManagerInterface $em)
     {
-        $repository = $em->getRepository(User::class);
+        $repository = $em ->getRepository(User::class);
+        $e = 'aucune erreur';
 
-        $users = $repository->findAll();
+        $users = $repository->findAllUser();
 
-        return new JsonResponse($users);
+        if(!$users) {
+            $e = 'aucun utilisateur trouvé !';
+        }
+
+        return $this->render('bdd.html.twig', [
+            "users" => $users,
+            "erreur" => $e,
+            "title" => 'Tout les utilisateurs'
+        ]);
     }
 
     /**
