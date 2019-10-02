@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +19,15 @@ class UserController extends AbstractController
      **/
     public function inscription(EntityManagerInterface $em, Request $request)
     {
-        $user = new Users();
-        $user->setEmail($request->get('email'))
-            ->setPassword($request->get('password'))
-            ->setPseudo($request->get('pseudo'));
+        $user = new User();
+        $user->setUsername($request->get('username')) 
+            ->setPassword($request->get('password'));
 
         $em->persist($user);
         $em->flush();
 
         return $this->render('index.html.twig', [
-            'title' => 'Bienvenue ' . $user->getPseudo() . ', connectez-vous !'
+            'title' => 'Bienvenue ' . $user->getUsername() . ', connectez-vous !'
         ]);
     }
 
@@ -37,7 +36,7 @@ class UserController extends AbstractController
      **/
     public function list(EntityManagerInterface $em)
     {
-        $repository = $em->getRepository(Users::class);
+        $repository = $em->getRepository(User::class);
 
         $users = $repository->findAll();
 
@@ -51,15 +50,19 @@ class UserController extends AbstractController
     {
         $user = new Users();
         $user->setEmail($request->get('email'))
-            ->setPassword($request->get('password'))
-            ->setPseudo($request->get('pseudo'));
+            ->setPassword($request->get('password'));
+
+        $kConnect = $request->get('keepConnect');
+
+        $repository = $em->getRepository(Users::class);
+
+        $users = $repository->findAll();
 
         $em->persist($user);
         $em->flush();
 
         return $this->render('index.html.twig', [
-            'title' => 'Bienvenue ' . $user->getPseudo() . ', connectez-vous !'
+            'title' => 'Connection' . $user->getPseudo() . ', connectez-vous !'
         ]);
     }
-
 }
