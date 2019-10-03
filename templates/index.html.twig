@@ -2,13 +2,19 @@
 
 {% block body %}
 
-    <div class="menu">
+    <div class="base">
 
-        <h1>{{ title }}</h1>
+        <img src="/image/logo.png">
 
-        <a href="{{ path('connexion') }}"><button type="button" class="btn btn-outline-primary">Connexion</button></a>
+        <div class="menu">
 
-        <a href="{{ path('inscription') }}"><button type="button" class="btn btn-outline-primary">Inscription</button></a>
+            <h2>{{ title }}</h2>
+
+            <a href="{{ path('connexion') }}"><button type="button" class="btn btn-outline-primary">S'connecter</button></a>
+
+            <a href="{{ path('inscription') }}"><button type="button" class="btn btn-outline-primary">Ici c'est l'inscription hein</button></a>
+
+        </div>
 
     </div>
 

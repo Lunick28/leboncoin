@@ -27,7 +27,7 @@ class UserController extends AbstractController
         $em->flush();
 
         return $this->render('index.html.twig', [
-            'title' => 'Bienvenue ' . $user->getUsername() . ', connectez-vous !'
+            'title' => 'Bienvenue au gadjo ' . $user->getUsername() . ', installe toi au bar et connecte toi avec l\'Didier !'
         ]);
     }
 
