@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="menu">
+
+        <h1>{{ title }}</h1>
+
+        <form action="{{ path('annonce') }}" method="post">
+            <div class="form-group">
+                <label for="inputName">C'est quoi que tu vends ?</label>
+                <input type="text" class="form-control" id="inputName" placeholder="C'est là que t'écris le nom" name="Name">
+            </div>
+            <div class="form-group">
+                <label for="InputPrice">Prix du machin-chose</label>
+                <input type="number" class="form-control" id="InputPrice" aria-describedby="emailHelp" placeholder="La t'écris le prix mon gars !" name="price">
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Décris ce que c'est que tu vends</label>
+                <input type="text" class="form-control" id="InputDescription" placeholder="Vas-y, sois pas timide !" name="description">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">C'est OK !</button>
+        </form>
+    </div>
+
+{% endblock %}
