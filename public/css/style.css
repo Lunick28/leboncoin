@@ -1,7 +1,6 @@
 html, body, div {
     margin:0;
     padding:0;
-
 }
 
 body  {
@@ -11,11 +10,20 @@ body  {
     /*border-style:solid;*/
 }
 
+.base {
+    text-align: center;
+    margin-top: 10%;
+    /*border-width:2px;*/
+    /*border-color:red;*/
+    /*border-style:solid;*/
+}
+
 .menu {
     text-align: center;
-    margin-top: 15%;
+
     margin-left: 40%;
     margin-right: 40%;
+    margin-top: 1%;
     /*border-width:2px;*/
     /*border-color:red;*/
     /*border-style:solid;*/
