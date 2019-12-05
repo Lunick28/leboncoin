@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Security\LoginFromAuthenticator;
 
 
 class UserController extends AbstractController
@@ -17,11 +19,16 @@ class UserController extends AbstractController
     /**
      * @Route("/inscription_en_cours", name="inscription_en_cours")
      **/
-    public function inscription(EntityManagerInterface $em, Request $request)
+    public function inscription(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
+
         $user->setUsername($request->get('username'))
-            ->setPassword($request->get('password'));
+            ->setPassword($passwordEncoder->encodePassword(
+                $user,
+                $request->get('password')
+            ));
+
 
         $em->persist($user);
         $em->flush();
@@ -74,4 +81,83 @@ class UserController extends AbstractController
             'title' => 'Connection' . $user->getPseudo() . ', connectez-vous !'
         ]);
     }
+
+    /**
+     * @Route("/user/{username}", name="user")
+     **/
+    public function user(EntityManagerInterface $em, Request $request, $username)
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $user = $repository->findOneBy(['username' => $username]);
+
+        return $this->render('user.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+ * @Route("/monprofil", name="monprofil")
+ **/
+    public function monprofil(EntityManagerInterface $em, Request $request)
+    {
+        if($this->getUser() === NULL) {
+            return $this->render('index.html.twig', [
+                'username' => 'Une erreur est survenue, reconnectez-vous !',
+                'title' => ''
+            ]);
+        }
+        else {
+            return $this->render('monprofil.html.twig', [
+                'user' => $this->getUser()
+            ]);
+        }
+    }
+
+    /**
+     * @Route("/editprofile", name="editprofile")
+     **/
+    public function editprofile(EntityManagerInterface $em, Request $request)
+    {
+        if($this->getUser() === NULL) {
+            return $this->render('index.html.twig', [
+                'username' => 'Une erreur est survenue, reconnectez-vous !',
+                'title' => ''
+            ]);
+        }
+        else {
+            return $this->render('editprofile.html.twig', [
+                'user' => $this->getUser()
+            ]);
+        }
+    }
+
+    /**
+     * @Route("/saveprofile", name="saveprofile")
+     **/
+    public function saveprofile(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        if($this->getUser() === NULL) {
+            return $this->render('index.html.twig', [
+                'username' => 'Une erreur est survenue, reconnectez-vous !',
+                'title' => ''
+            ]);
+        }
+        else {
+            $this->getUser()->setUsername($request->get('username'))
+                ->setPassword($passwordEncoder->encodePassword(
+                    $this->getUser(),
+                    $request->get('password')
+                ));
+
+
+            $em->persist($this->getUser());
+            $em->flush();
+
+            return $this->render('index.html.twig', [
+                'username' => $this->getUser()->getUsername(),
+                'title' => 'Le mot de passe et l\'identifiant ont été mis à jour !'
+            ]);
+        }
+    }
+
 }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="menu">
+
+        <h1>{{ annonce.name }}</h1>
+
+        <form action="{{ path('saveannonce', {annonce: annonce.id}) }}" method="post">
+            <div class="form-group">
+                <label>Nom de l'annonce</label>
+                <input type="text" class="form-control" value="{{ annonce.name }}" name="name">
+            </div>
+            <div class="form-group">
+                <select name="category" class="form-control" size="1">
+                    <option>Machine de chantier</option>
+                    <option>Jambon</option>
+                    <option>Barbecue</option>
+                    <option>Pièce de tuning</option>
+                    <option>Tracteur</option>
+                    <option>Plumes de oiseaux rares (poulette, faisan, vache, etc.)</option>
+                    <option>Bovin</option>
+                    <option>Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InputPrice">Prix</label>
+                <input type="number" class="form-control" id="InputPrice" aria-describedby="emailHelp" value="{{ annonce.price }}" name="price">
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <textarea type="text" class="form-control" id="InputDescription" name="description">{{ annonce.description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Enregistrer les modifications</button>
+
+            <a href="{{ path('deleteannonce', {annonce: annonce.id}) }}"><button type="button" class="btn btn-outline-primary">Supprimer l'annonce</button></a>
+        </form>
+
+        <a href="{{ path('monprofil') }}"><button type="button" class="btn btn-outline-primary">Mon profil</button></a>
+
+    </div>
+
+{% endblock %}

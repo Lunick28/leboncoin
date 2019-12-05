@@ -4,16 +4,21 @@
 
     <div class="menu">
 
-        <h1>Annonces</h1>
+        <h1>{{ user.username }}</h1>
 
         <a href="{{ path('home') }}"><button type="button" class="btn btn-outline-primary">Acceuil</button></a>
 
-        {% for annonce in annonces %}
+        <p>Identifiant : {{ user.username }}</p>
+        <a href="{{ path('editprofile') }}"><button type="button" class="btn btn-outline-primary">Editer mon profil</button></a>
+
+        <h2>Mes annonces</h2>
+
+        {% for annonce in user.annonce %}
             <h5>{{ annonce.name }}</h5>
             <p>Prix : {{ annonce.price }} €</p>
             <p>Catégorie : <a href="{{ path('annonce', {category: annonce.category}) }}">{{ annonce.category }}</a></p>
             <p>Description : {{ annonce.description }}</p>
-            <p>par <a href="{{ path('user', {username: annonce.user.username}) }}">{{ annonce.user.username }}</a></p>
+            <p><a href="{{ path('editannonce', {annonce: annonce.id}) }}">Editer l'annonce</a></p>
         {% endfor %}
 
     </div>

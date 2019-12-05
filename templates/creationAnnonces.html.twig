@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="menu">
+
+        <h1>Création d'annonce</h1>
+
+        <form action="{{ path('createAnnonce') }}" method="post">
+            <div class="form-group">
+                <label for="inputName">C'est quoi que tu vends ?</label>
+                <input type="text" class="form-control" id="inputName" placeholder="C'est là que t'écris le nom" name="name">
+            </div>
+            <div class="form-group">
+                <select name="category" class="form-control" size="1">
+                    <option>Machine de chantier</option>
+                    <option>Jambon</option>
+                    <option>Barbecue</option>
+                    <option>Pièce de tuning</option>
+                    <option>Tracteur</option>
+                    <option>Plumes de oiseaux rares (poulette, faisan, vache, etc.)</option>
+                    <option>Bovin</option>
+                    <option>Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InputPrice">Prix du machin-chose</label>
+                <input type="number" class="form-control" id="InputPrice" aria-describedby="emailHelp" placeholder="La t'écris le prix mon gars !" name="price">
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Décris ce que c'est que tu vends</label>
+                <input type="text" class="form-control" id="InputDescription" placeholder="Vas-y, sois pas timide !" name="description">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">C'est OK !</button>
+        </form>
+    </div>
+
+{% endblock %}

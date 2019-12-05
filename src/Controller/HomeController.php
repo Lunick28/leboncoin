@@ -15,9 +15,18 @@ class HomeController extends AbstractController
      * @Route("/", name="home")
      **/
     public function index() {
-        return $this->render('index.html.twig', [
-            'title' => ''
-        ]);
+        if($this->getUser() === NULL) {
+            return $this->render('index.html.twig', [
+                'username' => '',
+                'title' => ''
+            ]);
+        }
+        else {
+            return $this->render('index.html.twig', [
+                'username' => $this->getUser()->getUsername(),
+                'title' => ''
+            ]);
+        }
     }
 
     /**
@@ -37,4 +46,5 @@ class HomeController extends AbstractController
             'title' => 'Connexion'
         ]);
     }
+
 }

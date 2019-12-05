@@ -6,13 +6,22 @@
 
         <img src="/image/logo.png">
 
+        <h1>{{ title }}</h1>
+
         <div class="menu">
 
-            <h2>{{ title }}</h2>
+            {% if not app.user %}
+                <a href="{{ path('app_login') }}"><button type="button" class="btn btn-outline-primary">S'connecter</button></a>
+                <a href="{{ path('inscription') }}"><button type="button" class="btn btn-outline-primary">Ici c'est l'inscription hein</button></a>
+            {% endif %}
 
-            <a href="{{ path('connexion') }}"><button type="button" class="btn btn-outline-primary">S'connecter</button></a>
-
-            <a href="{{ path('inscription') }}"><button type="button" class="btn btn-outline-primary">Ici c'est l'inscription hein</button></a>
+            {% if app.user %}
+                <h2>Bonjour {{ username }} !</h2>
+                <a href="{{ path('annonces') }}"><button type="button" class="btn btn-outline-primary">Annonces</button></a>
+                <a href="{{ path('creationAnnonces') }}"><button type="button" class="btn btn-outline-primary">Créer une annonce</button></a>
+                <a href="{{ path('monprofil') }}"><button type="button" class="btn btn-outline-primary">Mon profil</button></a>
+                <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-primary">Se deconnecter</button></a>
+            {% endif %}
 
         </div>
 
