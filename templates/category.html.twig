@@ -2,17 +2,28 @@
 
 {% block body %}
 
-    <div class="menu">
+    <div>
+
+        <div class="boutonhome">
+            <a href="{{ path('home') }}"><button type="button" class="btn btn-outline-primary">Acceuil</button></a>
+            <a href="{{ path('annonces') }}"><button type="button" class="btn btn-outline-primary">Annonces</button></a>
+            <a href="{{ path('creationAnnonces') }}"><button type="button" class="btn btn-outline-primary">Créer une annonce</button></a>
+        </div>
+
+        <div class="titre">
 
         <h1>{{ annonceName }}</h1>
 
-        <a href="{{ path('annonces') }}"><button type="button" class="btn btn-outline-primary">Annonces</button></a>
+        </div>
 
         {% for annonce in annonces %}
-            <h5>{{ annonce.name }}</h5>
-            <p>Prix : {{ annonce.price }} €</p>
-            <p>Description : {{ annonce.description }}</p>
-            <p>par <a href="{{ path('user', {username: annonce.user.username}) }}">{{ annonce.user.username }}</a></p>
+            <div class="annonce">
+                </br>
+                <h5>{{ annonce.name }}</h5>
+                <p>Prix : {{ annonce.price }} €</p>
+                <p>Description : {{ annonce.description }}</p>
+                <p>par <a href="{{ path('user', {username: annonce.user.username}) }}">{{ annonce.user.username }}</a></p>
+            </div>
         {% endfor %}
 
     </div>

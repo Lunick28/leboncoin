@@ -2,23 +2,34 @@
 
 {% block body %}
 
-    <div class="menu">
-
-        <h1>{{ user.username }}</h1>
-
+    <div class="boutonhome">
         <a href="{{ path('home') }}"><button type="button" class="btn btn-outline-primary">Acceuil</button></a>
+        <a href="{{ path('annonces') }}"><button type="button" class="btn btn-outline-primary">Annonces</button></a>
+        <a href="{{ path('creationAnnonces') }}"><button type="button" class="btn btn-outline-primary">Créer une annonce</button></a>
+    </div>
 
-        <p>Identifiant : {{ user.username }}</p>
-        <a href="{{ path('editprofile') }}"><button type="button" class="btn btn-outline-primary">Editer mon profil</button></a>
+    <div>
 
-        <h2>Mes annonces</h2>
+        <div class="titre">
+
+            <h1>{{ user.username }}</h1>
+
+            <p>Identifiant : {{ user.username }}</p>
+            <a href="{{ path('editprofile') }}"><button type="button" class="btn btn-outline-primary">Editer mon profil</button></a>
+
+            <h2>Mes annonces</h2>
+
+        </div>
 
         {% for annonce in user.annonce %}
-            <h5>{{ annonce.name }}</h5>
-            <p>Prix : {{ annonce.price }} €</p>
-            <p>Catégorie : <a href="{{ path('annonce', {category: annonce.category}) }}">{{ annonce.category }}</a></p>
-            <p>Description : {{ annonce.description }}</p>
-            <p><a href="{{ path('editannonce', {annonce: annonce.id}) }}">Editer l'annonce</a></p>
+            <div class="annonce">
+                </br>
+                <h5>{{ annonce.name }}</h5>
+                <p>Prix : {{ annonce.price }} €</p>
+                <p>Catégorie : <a href="{{ path('annonce', {category: annonce.category}) }}">{{ annonce.category }}</a></p>
+                <p>Description : {{ annonce.description }}</p>
+                <p><a href="{{ path('editannonce', {annonce: annonce.id}) }}">Editer l'annonce</a></p>
+            </div>
         {% endfor %}
 
     </div>

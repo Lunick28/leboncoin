@@ -2,6 +2,10 @@
 
 {% block body %}
 
+    <div class="boutonhome">
+        <a href="{{ path('home') }}"><button type="button" class="btn btn-outline-primary">Acceuil</button></a>
+    </div>
+
     <div class="menu">
 
         <h1>Création d'annonce</h1>
@@ -13,14 +17,22 @@
             </div>
             <div class="form-group">
                 <select name="category" class="form-control" size="1">
-                    <option>Machine de chantier</option>
-                    <option>Jambon</option>
-                    <option>Barbecue</option>
-                    <option>Pièce de tuning</option>
-                    <option>Tracteur</option>
-                    <option>Plumes de oiseaux rares (poulette, faisan, vache, etc.)</option>
-                    <option>Bovin</option>
-                    <option>Autre</option>
+                    <optgroup label="Véhicules">
+                        <option>Machine de chantier</option>
+                        <option>Tracteur</option>
+                        <option>Pièce de tuning</option>
+                    </optgroup>
+                    <optgroup label="La bouffe">
+                        <option>Jambon</option>
+                        <option>Barbecue</option>
+                    </optgroup>
+                    <optgroup label="Les animals">
+                        <option>Plumes de oiseaux rares (poulette, faisan, vache, etc.)</option>
+                        <option>Bovin</option>
+                    </optgroup>
+                    <optgroup label="Autres">
+                        <option>Autre</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="form-group">
@@ -28,8 +40,8 @@
                 <input type="number" class="form-control" id="InputPrice" aria-describedby="emailHelp" placeholder="La t'écris le prix mon gars !" name="price">
             </div>
             <div class="form-group">
-                <label for="InputDescription">Décris ce que c'est que tu vends</label>
-                <input type="text" class="form-control" id="InputDescription" placeholder="Vas-y, sois pas timide !" name="description">
+                <label for="InputDescription">Description</label>
+                <textarea type="text" class="form-control" id="InputDescription" name="description" placeholder="Vas-y, sois pas timide !"></textarea>
             </div>
             <button type="submit" class="btn btn-outline-primary">C'est OK !</button>
         </form>

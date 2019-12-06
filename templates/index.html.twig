@@ -20,7 +20,10 @@
                 <a href="{{ path('annonces') }}"><button type="button" class="btn btn-outline-primary">Annonces</button></a>
                 <a href="{{ path('creationAnnonces') }}"><button type="button" class="btn btn-outline-primary">Créer une annonce</button></a>
                 <a href="{{ path('monprofil') }}"><button type="button" class="btn btn-outline-primary">Mon profil</button></a>
-                <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-primary">Se deconnecter</button></a>
+                <div class="boutonhome">
+                    <a href="{{ path('app_logout') }}"><button type="button" class="btn btn-outline-primary">Se deconnecter</button></a>
+                </div>
+                </div>
             {% endif %}
 
         </div>
