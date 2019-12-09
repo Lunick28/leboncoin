@@ -21,7 +21,7 @@
 
         </div>
 
-        {% for annonce in user.annonce %}
+        {% for annonce in user.annonce | reverse %}
             <div class="annonce">
                 </br>
                 <h5>{{ annonce.name }}</h5>
